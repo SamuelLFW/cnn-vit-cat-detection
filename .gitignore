@@ -1,0 +1,83 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Virtual Environment
+venv/
+ENV/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Dataset files
+cat_dataset/
+dataset/
+
+# Model weights and outputs
+output/
+*.pth
+*.pt
+*.h5
+*.onnx
+
+# Images
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+logs/
+
+# ML-specific
+*.mlmodel
+*.tensorboard
+*.tflite
+*.hdf5
+*.safetensors
+
+# Large files
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.rar
+
+# Cache
+.cache/
+torch_cache/
+.huggingface/ 
