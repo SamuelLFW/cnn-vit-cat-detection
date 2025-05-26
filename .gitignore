@@ -36,9 +36,11 @@ ENV/
 # Dataset files
 cat_dataset/
 dataset/
+cat_dataset_*/
 
 # Model weights and outputs
 output/
+experiments/
 *.pth
 *.pt
 *.h5
@@ -80,4 +82,10 @@ logs/
 # Cache
 .cache/
 torch_cache/
-.huggingface/ 
+.huggingface/
+
+# Environment variables
+.env
+.env.* 
+
+wandb
