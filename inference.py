@@ -6,6 +6,8 @@ from torchvision.models import ResNet50_Weights, ViT_B_16_Weights
 from PIL import Image
 import matplotlib.pyplot as plt
 import numpy as np
+import time
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 # Set device
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -112,6 +114,37 @@ def visualize_results(image, results, image_path):
     plt.savefig('prediction_results.png', dpi=150, bbox_inches='tight')
     plt.show()
 
+def evaluate_model(model, dataloader):
+    """Evaluate the model on the given dataloader and return performance metrics."""
+    model.eval()
+    all_preds = []
+    all_labels = []
+    inference_times = []
+    
+    with torch.no_grad():
+        for images, labels in dataloader:
+            images, labels = images.to(device), labels.to(device)
+            start_time = time.time()
+            outputs = model(images)
+            inference_times.append(time.time() - start_time)
+            _, preds = torch.max(outputs, 1)
+            all_preds.extend(preds.cpu().numpy())
+            all_labels.extend(labels.cpu().numpy())
+    
+    accuracy = accuracy_score(all_labels, all_preds) * 100
+    precision = precision_score(all_labels, all_preds, average='binary') * 100
+    recall = recall_score(all_labels, all_preds, average='binary') * 100
+    f1 = f1_score(all_labels, all_preds, average='binary') * 100
+    avg_inference_time = np.mean(inference_times) * 1000  # Convert to ms
+    
+    return {
+        'accuracy': accuracy,
+        'precision': precision,
+        'recall': recall,
+        'f1_score': f1,
+        'inference_time': avg_inference_time
+    }
+
 def main():
     # Path to your test image (replace with your image path)
     image_path = input("Enter the path to your test image: ").strip()
@@ -161,6 +194,21 @@ def main():
         print("\nGenerating visualization...")
         visualize_results(image, results, image_path)
         print("Results saved as 'prediction_results.png'")
+        
+        # Placeholder for loading your test dataset
+        # Replace with your actual DataLoader
+        test_dataloader = None  # e.g., DataLoader(test_dataset, batch_size=32, shuffle=False)
+        
+        if test_dataloader is not None:
+            print("Evaluating CNN model...")
+            cnn_metrics = evaluate_model(cnn_model, test_dataloader)
+            print("CNN Metrics:", cnn_metrics)
+            
+            print("Evaluating ViT model...")
+            vit_metrics = evaluate_model(vit_model, test_dataloader)
+            print("ViT Metrics:", vit_metrics)
+        else:
+            print("Test dataloader not provided. Please update the script with your test dataset.")
         
     except FileNotFoundError as e:
         print(f"Error: Could not find file. {e}")
