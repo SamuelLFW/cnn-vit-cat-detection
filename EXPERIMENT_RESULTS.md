@@ -18,10 +18,10 @@ This experiment compared the performance of **CNN (ResNet50)** vs **Vision Trans
 
 | Metric              | CNN (ResNet50) | ViT           | Winner                     |
 | ------------------- | -------------- | ------------- | -------------------------- |
-| **Accuracy**        | 75.00%         | 96.25%        | ✅ **ViT (+21.25%)**       |
-| **Precision**       | 75.00%         | 96.51%        | ✅ **ViT (+21.51%)**       |
-| **Recall**          | 75.00%         | 96.25%        | ✅ **ViT (+21.25%)**       |
-| **F1-Score**        | 75.00%         | 96.25%        | ✅ **ViT (+21.25%)**       |
+| **Accuracy**        | 82.5%          | 95%           | ✅ **ViT (+12.5%)**        |
+| **Precision**       | 87.03%         | 95%           | ✅ **ViT (+7.97%)**        |
+| **Recall**          | 82.5%          | 95%           | ✅ **ViT (+12.5%)**        |
+| **F1-Score**        | 82.40%         | 95%           | ✅ **ViT (+12.60%)**       |
 | **Inference Speed** | 4.18 ms/image  | 5.31 ms/image | ✅ **CNN (1.13ms faster)** |
 | **Model Size**      | 90 MB          | 327 MB        | ✅ **CNN (237MB smaller)** |
 
@@ -31,15 +31,15 @@ This experiment compared the performance of **CNN (ResNet50)** vs **Vision Trans
 
 **ViT significantly outperformed CNN** with:
 
-- **21.25% higher accuracy** (96.25% vs 75.00%)
+- **12.5% higher accuracy** (95% vs 82.5%)
 - **Superior precision and recall** across both classes
 - **Excellent generalization** with minimal overfitting
 
 #### ⚡ **Speed vs Accuracy Trade-off**
 
-- **CNN**: Faster inference (4.18ms) but lower accuracy (75%)
-- **ViT**: Slightly slower (5.31ms) but much higher accuracy (96.25%)
-- **Trade-off**: +1.13ms inference time for +21.25% accuracy improvement
+- **CNN**: Faster inference (4.18ms) but lower accuracy (82.5%)
+- **ViT**: Slightly slower (5.31ms) but much higher accuracy (95%)
+- **Trade-off**: +1.13ms inference time for +12.5% accuracy improvement
 
 #### 💾 **Model Size Considerations**
 
@@ -54,15 +54,15 @@ This experiment compared the performance of **CNN (ResNet50)** vs **Vision Trans
 #### CNN (ResNet50)
 
 - **Training Accuracy**: 91.88% (final epoch)
-- **Validation Accuracy**: 75.00% (final epoch)
-- **Overfitting**: Moderate (16.88% gap between train/val)
+- **Validation Accuracy**: 82.5% (final epoch)
+- **Overfitting**: Moderate (9.38% gap between train/val)
 - **Convergence**: Stable but plateaued early
 
 #### ViT (Vision Transformer)
 
 - **Training Accuracy**: 100.00% (final epoch)
-- **Validation Accuracy**: 96.25% (final epoch)
-- **Overfitting**: Minimal (3.75% gap between train/val)
+- **Validation Accuracy**: 95.00% (final epoch)
+- **Overfitting**: Minimal (5.00% gap between train/val)
 - **Convergence**: Excellent, reached near-perfect performance
 
 ### Classification Performance
@@ -71,16 +71,16 @@ This experiment compared the performance of **CNN (ResNet50)** vs **Vision Trans
 
 ```
               precision    recall  f1-score   support
-     Non-Cat       0.75      0.75      0.75        40
-         Cat       0.75      0.75      0.75        40
+     Non-Cat       0.87      0.80      0.83        40
+         Cat       0.87      0.85      0.86        40
 ```
 
 #### ViT Confusion Matrix
 
 ```
               precision    recall  f1-score   support
-     Non-Cat       1.00      0.93      0.96        40
-         Cat       0.93      1.00      0.96        40
+     Non-Cat       0.95      0.93      0.94        40
+         Cat       0.93      0.95      0.94        40
 ```
 
 ## 🚀 Practical Implications
@@ -138,8 +138,8 @@ This experiment compared the performance of **CNN (ResNet50)** vs **Vision Trans
 
 ## 📁 Saved Models
 
-- **`cnn_best_model.pth`**: Best CNN model (75% accuracy)
-- **`vit_best_model.pth`**: Best ViT model (96.25% accuracy)
+- **`cnn_best_model.pth`**: Best CNN model (82.5% accuracy)
+- **`vit_best_model.pth`**: Best ViT model (95% accuracy)
 - **`best_models/`**: Directory with all results and visualizations
 
 ## 🔄 Reproducibility
